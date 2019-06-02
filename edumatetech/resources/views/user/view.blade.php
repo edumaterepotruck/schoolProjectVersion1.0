@@ -13,7 +13,8 @@
                     <thead>
                         <tr>
                         <th>Id</th>
-                        <th>Name</th>                        
+                        <th>Name</th> 
+                        <th>Role</th>                        
                         <th>Active</th> 
                         <th>Action</th>                         
                         </tr>
@@ -23,7 +24,8 @@
                         @foreach($data as $item)
                         <tr class="item{{$item->id}}">
                             <td></td>
-                            <td>{{$item->name}}</td>                            
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->role}}</td>                            
                             <td>{{$item->record_status}}</td>
                             <td>
                             <a href="{{ route('user.edit',$item->id)}}" class="edit-modal btn btn-info"><span class="glyphicon glyphicon-edit"></span>Edit</a>

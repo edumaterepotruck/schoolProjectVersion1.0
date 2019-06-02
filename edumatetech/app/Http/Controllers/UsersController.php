@@ -14,7 +14,11 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $data =  User::all();
+        $data =  User::select('users.id as id','users.name as name','users.record_status as record_status','roles.name as role')
+        ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
+        ->join('roles','roles.id','=','user__role__mappings.role_id')
+        ->get();
+   
         return view('user/view',compact('data'));
     }
 
@@ -43,6 +47,8 @@ class UsersController extends Controller
             
            
         ]);
+        
+
         $input['password'] = Hash::make( $input['password'] );
 
         DB::beginTransaction();
@@ -54,6 +60,8 @@ class UsersController extends Controller
                 $userRole = new User_Role_Mapping;
                 $userRole->user_id = $result->id;
                 $userRole->role_id = $input['role_id'];
+
+
                 $userRole->save();
                 }
                 catch(\Exception $e)
@@ -62,14 +70,22 @@ class UsersController extends Controller
                 DB::rollback();
                 return back()->with('error','Something Went Wrong!');
                 }
-        
-        return back()->with('success','Saved Successfully!');
+
+                DB::commit();
+                return redirect('/user/index')->with('success', 'User has been inserted');
+        //return back()->with('success','Saved Successfully!');
     }
 
     public function edit($id)
     {
-        $user = User::find( $id );             
-        return view('user/edit', compact('user'));
+        $roles = Role::active();
+        
+        $user = User::find( $id );   
+        // $user =  User::select('users.id as id','users.name as name','users.record_status as record_status','roles.name as role')
+        // ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
+        // ->join('roles','roles.id','=','user__role__mappings.role_id')
+        // ->get();          
+        return view('user/edit', compact('user','roles'));
     }
 
 
@@ -80,10 +96,36 @@ class UsersController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id'  => ['required'],
             'record_status'  => ['required']   
         ]);
+        
+
+        DB::beginTransaction();
+
+        try{
+            
         $users=User::find($id);
         $users->update( $input );
+                      
+
+        $userRole =User_Role_Mapping::where('user_id',$users->id);
+        $userRole->user_id = $users->id;
+        $userRole->role_id = $input['role_id'];
+
+
+        $userRole->save();
+        }
+        catch(\Exception $e)
+        {
+
+        DB::rollback();
+        return back()->with('error','Something Went Wrong!');
+        }
+
+        DB::commit();
+
+
         return redirect('/user/index')->with('success', 'User has been updated');
        
     }
