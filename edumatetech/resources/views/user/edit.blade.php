@@ -29,7 +29,7 @@
                     <select required name="role_id" class="form-control" id="role_id">
                     <option value="" disabled selected>--Select--</option>
                     @foreach($roles as $role)
-                    <option value="{{$role->id}}"  >{{$role->name}}</option>
+                    <option value="{{$role->id}}" {{ old('role_id', $user->role_id) == $role->id ? 'selected' : ''  }} >{{$role->name}}</option>
                     @endforeach
                     </select>
                     @if ($errors->has('role'))

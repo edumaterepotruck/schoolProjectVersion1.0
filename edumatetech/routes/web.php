@@ -48,3 +48,31 @@ Route::get('/user/list', 'UsersController@list')->name('user.list');
 Route::post('/user/destroy', 'UsersController@destroy')->name('user.destroy');
 Route::get('user/{id}', 'UsersController@edit')->name('user.edit');
 Route::patch('user/{id}', 'UsersController@update')->name('user.update');
+
+
+//---AcademicYear---------------
+Route::get('/academicyear/index', 'AcademicYearController@index')->name('academicyear.index');
+Route::get('/academicyear/create', 'AcademicYearController@create')->name('academicyear.create');
+Route::post('/academicyear/store', 'AcademicYearController@store')->name('academicyear.store');
+Route::get('/academicyear/list', 'AcademicYearController@list')->name('academicyear.list');
+Route::post('/academicyear/destroy', 'AcademicYearController@destroy')->name('academicyear.destroy');
+Route::get('academicyear/{id}', 'AcademicYearController@edit')->name('academicyear.edit');
+Route::patch('academicyear/{id}', 'AcademicYearController@update')->name('academicyear.update');
+
+//---ClassDetail---------------
+Route::get('/class-detail/index', 'ClassDetailController@index')->name('class-detail.index');
+Route::get('/class-detail/create', 'ClassDetailController@create')->name('class-detail.create');
+Route::post('/class-detail/store', 'ClassDetailController@store')->name('class-detail.store');
+Route::get('/class-detail/list', 'ClassDetailController@list')->name('class-detail.list');
+Route::post('/class-detail/destroy', 'ClassDetailController@destroy')->name('class-detail.destroy');
+Route::get('class-detail/{id}', 'ClassDetailController@edit')->name('class-detail.edit');
+Route::patch('class-detail/{id}', 'ClassDetailController@update')->name('class-detail.update');
+
+//---ClassDivision---------------
+Route::get('/class-division/index', 'ClassDivisionController@index')->name('class-division.index');
+Route::get('/class-division/create', 'ClassDivisionController@create')->name('class-division.create');
+Route::post('/class-division/store', 'ClassDivisionController@store')->name('class-division.store');
+Route::get('/class-division/list', 'ClassDivisionController@list')->name('class-division.list');
+Route::post('/class-division/destroy', 'ClassDivisionController@destroy')->name('class-division.destroy');
+Route::get('class-division/{id}', 'ClassDivisionController@edit')->name('class-division.edit');
+Route::patch('class-division/{id}', 'ClassDivisionController@update')->name('class-division.update');

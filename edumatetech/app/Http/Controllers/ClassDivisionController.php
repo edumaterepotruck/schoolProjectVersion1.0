@@ -1,35 +1,36 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Role;
+use App\ClassDivision;
 
-class RoleController extends Controller
+class ClassDivisionController extends Controller
 {
     public function index()
     {
-        $data =  Role::all();
-        return view('role/view',compact('data'));
+        $data =  ClassDivision::all();
+        return view('classDivision/view',compact('data'));
     }
 
     public function list()
     {       
-         $data =  Role::all();
+         $data =  ClassDivision::all();
        
-        return view('role/view',compact('data'));
+        return view('classDivision/view',compact('data'));
     }
 
     public function create()
     {
         
-        return view('role/create');
+        return view('classDivision/create');
     }
 
-    public function store(Role $role)
+    public function store(ClassDivision $classDivision)
     {       	
     	
     	$input = request()->validate([
@@ -39,8 +40,8 @@ class RoleController extends Controller
         ]);
 
        
-        $role->create($input);
-        return redirect('/role/index')->with('success', 'Saved Successfully!');
+        $classDivision->create($input);
+        return redirect('/class-division/index')->with('success', 'Saved Successfully!');
         //return back()->with('success','Saved Successfully!');
     }
 
@@ -48,22 +49,22 @@ class RoleController extends Controller
     {         
        
        
-            $role = Role::find( $id ); 
+            $classDivision = ClassDivision::find( $id ); 
             
-        return view('role/edit', compact('role'));
+        return view('classDivision/edit', compact('classDivision'));
     }
 
 
-    public function update(Role $role, $id)
+    public function update(ClassDivision $classDivision, $id)
     {
        
         $input = request()->validate([
             'name'           => ['required', 'min:3', 'max:191'],
             'record_status'  => ['required']           
         ]);
-        $roles=Role::find($id);
-        $roles->update( $input );
-        return redirect('/role/index')->with('success', 'Role has been updated');
+        $classDivisions=ClassDivision::find($id);
+        $classDivisions->update( $input );
+        return redirect('/class-division/index')->with('success', 'ClassDivision has been updated');
         //return back()->with('success','Updated Successfully!');
     }
 
@@ -72,11 +73,11 @@ class RoleController extends Controller
     {
         $id = $request->input('id');
         if( $id ) {
-            $Role = Role::find( $id );     
-            if($Role){                
+            $ClassDivision = ClassDivision::find( $id );     
+            if($ClassDivision){                
 
                 try {
-                    $Role->delete();
+                    $ClassDivision->delete();
                         
                     return response()->json(['status' => 1]);
                     }         

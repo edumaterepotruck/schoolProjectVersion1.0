@@ -14,4 +14,14 @@ class Role extends Model
                                 ->get();
     }
 
+    // public function rolemap()
+    // {
+    //     return $this->hasMany('App\User_Role_Mapping');
+    // }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

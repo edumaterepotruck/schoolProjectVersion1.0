@@ -1,70 +1,75 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Role;
+use App\AcademicYear;
 
-class RoleController extends Controller
+class AcademicYearController extends Controller
 {
     public function index()
     {
-        $data =  Role::all();
-        return view('role/view',compact('data'));
+        $data =  AcademicYear::all();
+        return view('academicyear/view',compact('data'));
     }
 
     public function list()
     {       
-         $data =  Role::all();
+         $data =  AcademicYear::all();
        
-        return view('role/view',compact('data'));
+        return view('academicyear/view',compact('data'));
     }
 
     public function create()
     {
         
-        return view('role/create');
+        return view('academicyear/create');
     }
 
-    public function store(Role $role)
+    public function store(AcademicYear $academicyear)
     {       	
     	
     	$input = request()->validate([
             'name'           => ['required', 'min:3', 'max:191'],
+            'from'           => ['date'],
+            'to'             => ['after:from'], 
             'record_status'  => ['required']
            
         ]);
 
        
-        $role->create($input);
-        return redirect('/role/index')->with('success', 'Saved Successfully!');
-        //return back()->with('success','Saved Successfully!');
+        $academicyear->create($input);
+        return redirect('/academicyear/index')->with('success', 'Saved Successfully!');
+       // return back()->with('success','Saved Successfully!');
     }
 
     public function edit($id)
     {         
        
        
-            $role = Role::find( $id ); 
+            $academicyear = AcademicYear::find( $id ); 
             
-        return view('role/edit', compact('role'));
+        return view('academicyear/edit', compact('academicyear'));
     }
 
 
-    public function update(Role $role, $id)
+    public function update(AcademicYear $academicyear, $id)
     {
        
         $input = request()->validate([
             'name'           => ['required', 'min:3', 'max:191'],
+            'from'           => ['date'],
+            'to'             => ['after:from'], 
             'record_status'  => ['required']           
         ]);
-        $roles=Role::find($id);
-        $roles->update( $input );
-        return redirect('/role/index')->with('success', 'Role has been updated');
-        //return back()->with('success','Updated Successfully!');
+        $academicyears=AcademicYear::find($id);
+        $academicyears->update( $input );
+        return redirect('/academicyear/index')->with('success', 'AcademicYear has been updated');
+      //  return back()->with('success','Updated Successfully!');
     }
 
 
@@ -72,11 +77,11 @@ class RoleController extends Controller
     {
         $id = $request->input('id');
         if( $id ) {
-            $Role = Role::find( $id );     
-            if($Role){                
+            $AcademicYear = AcademicYear::find( $id );     
+            if($AcademicYear){                
 
                 try {
-                    $Role->delete();
+                    $AcademicYear->delete();
                         
                     return response()->json(['status' => 1]);
                     }         

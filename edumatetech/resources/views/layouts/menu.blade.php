@@ -39,8 +39,11 @@
           </span>
       </a>
       <ul class="treeview-menu">
+        <li><a href="{{ route('academicyear.index') }}">Academic Year</a></li>
         <li><a href="{{ route('role.index') }}">Role</a></li>
         <li><a href="{{ route('user.index') }}">User</a></li>
+        <li><a href="{{ route('class-detail.index') }}">Class Detail</a></li>
+        <li><a href="{{ route('class-division.index') }}">Class Division</a></li>
       </ul>
     </li>
 

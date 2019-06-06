@@ -18,7 +18,8 @@ class UsersController extends Controller
         ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
         ->join('roles','roles.id','=','user__role__mappings.role_id')
         ->get();
-   
+
+        
         return view('user/view',compact('data'));
     }
 
@@ -80,11 +81,11 @@ class UsersController extends Controller
     {
         $roles = Role::active();
         
-        $user = User::find( $id );   
-        // $user =  User::select('users.id as id','users.name as name','users.record_status as record_status','roles.name as role')
-        // ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
-        // ->join('roles','roles.id','=','user__role__mappings.role_id')
-        // ->get();          
+        //$user = User::find( $id );   
+        $user =  User::select('users.id as id','users.name as name','users.email as email','users.record_status as record_status','roles.name as role','roles.id as role_id')
+        ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
+        ->join('roles','roles.id','=','user__role__mappings.role_id')
+        ->find( $id );          
         return view('user/edit', compact('user','roles'));
     }
 
@@ -94,10 +95,11 @@ class UsersController extends Controller
        
         $input = request()->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role_id'  => ['required'],
-            'record_status'  => ['required']   
+            'email' => ['required', 'string', 'email', 'max:255','unique:users,email,'. $id ],
+            'record_status'  => ['required'] ,
+            //'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id'  => ['required']
+            
         ]);
         
 
@@ -107,9 +109,8 @@ class UsersController extends Controller
             
         $users=User::find($id);
         $users->update( $input );
-                      
-
-        $userRole =User_Role_Mapping::where('user_id',$users->id);
+                
+        $userRole =User_Role_Mapping::where('user_id',$users->id)->first();
         $userRole->user_id = $users->id;
         $userRole->role_id = $input['role_id'];
 
