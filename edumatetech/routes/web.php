@@ -76,3 +76,13 @@ Route::get('/class-division/list', 'ClassDivisionController@list')->name('class-
 Route::post('/class-division/destroy', 'ClassDivisionController@destroy')->name('class-division.destroy');
 Route::get('class-division/{id}', 'ClassDivisionController@edit')->name('class-division.edit');
 Route::patch('class-division/{id}', 'ClassDivisionController@update')->name('class-division.update');
+
+
+//---ClassDivision---------------
+Route::get('/classBranch/index', 'ClassBranchController@index')->name('classBranch.index');
+Route::get('/classBranch/create', 'ClassBranchController@create')->name('classBranch.create');
+Route::post('/classBranch/store', 'ClassBranchController@store')->name('classBranch.store');
+Route::get('/classBranch/list', 'ClassBranchController@list')->name('classBranch.list');
+Route::post('/classBranch/destroy', 'ClassBranchController@destroy')->name('classBranch.destroy');
+Route::get('classBranch/{id}', 'ClassBranchController@edit')->name('classBranch.edit');
+Route::patch('classBranch/{id}', 'ClassBranchController@update')->name('classBranch.update');
