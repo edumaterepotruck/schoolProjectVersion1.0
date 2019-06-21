@@ -45,6 +45,7 @@
         <li><a href="{{ route('class-detail.index') }}">Class Detail</a></li>
         <li><a href="{{ route('class-division.index') }}">Class Division</a></li>
         <li><a href="{{ route('classBranch.index') }}">Class Branch</a></li>
+        <li><a href="{{ route('classMapping.index') }}">Class Mapping</a></li>
       </ul>
     </li>
 

@@ -78,7 +78,7 @@ Route::get('class-division/{id}', 'ClassDivisionController@edit')->name('class-d
 Route::patch('class-division/{id}', 'ClassDivisionController@update')->name('class-division.update');
 
 
-//---ClassDivision---------------
+//---ClassBranch---------------
 Route::get('/classBranch/index', 'ClassBranchController@index')->name('classBranch.index');
 Route::get('/classBranch/create', 'ClassBranchController@create')->name('classBranch.create');
 Route::post('/classBranch/store', 'ClassBranchController@store')->name('classBranch.store');
@@ -86,3 +86,13 @@ Route::get('/classBranch/list', 'ClassBranchController@list')->name('classBranch
 Route::post('/classBranch/destroy', 'ClassBranchController@destroy')->name('classBranch.destroy');
 Route::get('classBranch/{id}', 'ClassBranchController@edit')->name('classBranch.edit');
 Route::patch('classBranch/{id}', 'ClassBranchController@update')->name('classBranch.update');
+
+
+//---ClassMappping---------------
+Route::get('/classMapping/index', 'ClassMappingController@index')->name('classMapping.index');
+Route::get('/classMapping/create', 'ClassMappingController@create')->name('classMapping.create');
+Route::post('/classMapping/store', 'ClassMappingController@store')->name('classMapping.store');
+Route::get('/classMapping/list', 'ClassMappingController@list')->name('classMapping.list');
+Route::post('/classMapping/destroy', 'ClassMappingController@destroy')->name('classMapping.destroy');
+Route::get('classMapping/{id}', 'ClassMappingController@edit')->name('classMapping.edit');
+Route::patch('classMapping/{id}', 'ClassMappingController@update')->name('classMapping.update');
