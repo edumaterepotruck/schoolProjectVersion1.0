@@ -46,6 +46,9 @@
         <li><a href="{{ route('class-division.index') }}">Class Division</a></li>
         <li><a href="{{ route('classBranch.index') }}">Class Branch</a></li>
         <li><a href="{{ route('classMapping.index') }}">Class Mapping</a></li>
+        <li><a href="{{ route('casteCategory.index') }}">Caste Category</a></li>
+        <li><a href="{{ route('religion.index') }}">Religion</a></li>        
+        <li><a href="{{ route('caste.index') }}">Caste</a></li>
       </ul>
     </li>
 

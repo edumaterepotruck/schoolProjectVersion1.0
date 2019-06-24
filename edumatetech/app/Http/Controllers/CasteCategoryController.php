@@ -6,30 +6,30 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Religion;
+use App\CasteCategory;
 
-class ReligionController extends Controller
+class CasteCategoryController extends Controller
 {
     public function index()
     {
-        $data =  Religion::all();
-        return view('religion/view',compact('data'));
+        $data =  CasteCategory::all();
+        return view('casteCategory/view',compact('data'));
     }
 
     public function list()
     {       
-         $data =  Religion::all();
+         $data =  CasteCategory::all();
        
-        return view('religion/view',compact('data'));
+        return view('casteCategory/view',compact('data'));
     }
 
     public function create()
     {
         
-        return view('religion/create');
+        return view('casteCategory/create');
     }
 
-    public function store(Religion $religion)
+    public function store(CasteCategory $casteCategory)
     {       	
     	
     	$input = request()->validate([
@@ -39,8 +39,8 @@ class ReligionController extends Controller
         ]);
 
        
-        $religion->create($input);
-        return redirect('/religion/index')->with('success', 'Saved Successfully!');
+        $casteCategory->create($input);
+        return redirect('/casteCategory/index')->with('success', 'Saved Successfully!');
         //return back()->with('success','Saved Successfully!');
     }
 
@@ -48,22 +48,22 @@ class ReligionController extends Controller
     {         
        
        
-            $religion = Religion::find( $id ); 
+            $casteCategory = CasteCategory::find( $id ); 
             
-        return view('religion/edit', compact('religion'));
+        return view('casteCategory/edit', compact('casteCategory'));
     }
 
 
-    public function update(Religion $religion, $id)
+    public function update(CasteCategory $casteCategory, $id)
     {
        
         $input = request()->validate([
             'name'           => ['required', 'min:3', 'max:191'],
             'record_status'  => ['required']           
         ]);
-        $roles=Religion::find($id);
+        $roles=CasteCategory::find($id);
         $roles->update( $input );
-        return redirect('/religion/index')->with('success', 'Religion has been updated');
+        return redirect('/casteCategory/index')->with('success', 'CasteCategory has been updated');
         //return back()->with('success','Updated Successfully!');
     }
 
@@ -72,11 +72,11 @@ class ReligionController extends Controller
     {
         $id = $request->input('id');
         if( $id ) {
-            $Religion = Religion::find( $id );     
-            if($Religion){                
+            $CasteCategory = CasteCategory::find( $id );     
+            if($CasteCategory){                
 
                 try {
-                    $Religion->delete();
+                    $CasteCategory->delete();
                         
                     return response()->json(['status' => 1]);
                     }         

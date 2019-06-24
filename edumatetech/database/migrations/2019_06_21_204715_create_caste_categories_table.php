@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCastesTable extends Migration
+class CreateCasteCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateCastesTable extends Migration
      */
     public function up()
     {
-        Schema::create('castes', function (Blueprint $table) {
+        Schema::create('caste_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 100);
-            $table->bigInteger('religion_id')->unsigned();
-            $table->bigInteger('caste_categories_id')->unsigned();            
             $table->string('record_status', 25)->default('active')->nullable();
             $table->timestamps();
-
-            $table->foreign('religion_id')->references('id')->on('religions');
-            $table->foreign('caste_categories_id')->references('id')->on('caste_categories');
         });
     }
 
@@ -33,6 +28,6 @@ class CreateCastesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('castes');
+        Schema::dropIfExists('caste_categories');
     }
 }

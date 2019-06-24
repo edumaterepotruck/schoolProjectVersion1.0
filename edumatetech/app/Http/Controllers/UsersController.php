@@ -82,9 +82,8 @@ class UsersController extends Controller
         $roles = Role::active();
         
         //$user = User::find( $id );   
-        $user =  User::select('users.id as id','users.name as name','users.email as email','users.record_status as record_status','roles.name as role','roles.id as role_id')
+        $user =  User::select('users.id as id','users.name as name','users.email as email','users.record_status as record_status','role_id as role_id')
         ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
-        ->join('roles','roles.id','=','user__role__mappings.role_id')
         ->find( $id );          
         return view('user/edit', compact('user','roles'));
     }

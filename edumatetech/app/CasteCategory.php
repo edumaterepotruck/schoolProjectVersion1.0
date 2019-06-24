@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Religion extends Model
+class CasteCategory extends Model
 {
     protected $guarded = [];
     public static function active() {
         
-        return Religion::select('id', 'name')
+        return CasteCategory::select('id', 'name')
                                 ->where('record_status','=',"active")
                                 ->get();
     }

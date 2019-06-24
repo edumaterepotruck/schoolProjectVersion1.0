@@ -19,8 +19,8 @@ class CreateStudentsTable extends Migration
             $table->string('lastname',100);            
             $table->string('gender',10);
             $table->date('dob')->nullable();
-            $table->string('identification',100);
-            $table->string('bloodGroup',5);
+            $table->string('identification',100)->nullable();
+            $table->string('bloodGroup',5)->nullable();
             
             $table->date('admission_date'); 
             $table->string('admission_no',50);
@@ -31,8 +31,8 @@ class CreateStudentsTable extends Migration
             $table->string('gaurdianRelation',100);
 
             $table->string('mobile',25);
-            $table->string('alt_mobile',25);
-            $table->string('telephone',25);
+            $table->string('alt_mobile',25)->nullable();
+            $table->string('telephone',25)->nullable();
             $table->string('email',100)->unique()->nullable();
             
             $table->string('address1',255);
@@ -43,7 +43,7 @@ class CreateStudentsTable extends Migration
             $table->string('district',100);
             $table->string('pincode',50);
 
-            $table->string('photo');
+            $table->string('photo')->nullable();
 
             $table->bigInteger('religion_id')->unsigned();
             $table->bigInteger('caste_id')->unsigned();

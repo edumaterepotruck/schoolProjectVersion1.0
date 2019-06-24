@@ -67,11 +67,8 @@ class ClassMappingController extends Controller
         $divisions =  ClassDivision::active();
         $branchs =  ClassBranch::active();
 
-        $data =  ClassMapping::select('class_mappings.id as id','class_details.id as class','class_divisions.id as division','class_branches.id as branch','class_mappings.record_status as record_status')
-        ->join('class_details','class_mappings.class_detail_id','=','class_details.id')
-        ->join('class_divisions','class_mappings.class_division_id','=','class_divisions.id')
-        ->join('class_branches','class_mappings.class_branch_id','=','class_branches.id')
-        ->find( $id );  
+        $data =  ClassMapping::select('class_mappings.id as id','class_detail_id as class','class_division_id as division','class_branch_id as branch','class_mappings.record_status as record_status')
+                 ->find( $id );  
         return view('classMapping/edit',compact('class','divisions','branchs','data'));
     }
 
