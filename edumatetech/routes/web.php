@@ -97,7 +97,7 @@ Route::post('/classMapping/destroy', 'ClassMappingController@destroy')->name('cl
 Route::get('classMapping/{id}', 'ClassMappingController@edit')->name('classMapping.edit');
 Route::patch('classMapping/{id}', 'ClassMappingController@update')->name('classMapping.update');
 
-//---ClassMappping---------------
+//---Religion---------------
 Route::get('/religion/index', 'ReligionController@index')->name('religion.index');
 Route::get('/religion/create', 'ReligionController@create')->name('religion.create');
 Route::post('/religion/store', 'ReligionController@store')->name('religion.store');
@@ -106,7 +106,7 @@ Route::post('/religion/destroy', 'ReligionController@destroy')->name('religion.d
 Route::get('religion/{id}', 'ReligionController@edit')->name('religion.edit');
 Route::patch('religion/{id}', 'ReligionController@update')->name('religion.update');
 
-//---ClassMappping---------------
+//---CasteCategory---------------
 Route::get('/casteCategory/index', 'CasteCategoryController@index')->name('casteCategory.index');
 Route::get('/casteCategory/create', 'CasteCategoryController@create')->name('casteCategory.create');
 Route::post('/casteCategory/store', 'CasteCategoryController@store')->name('casteCategory.store');
@@ -115,7 +115,7 @@ Route::post('/casteCategory/destroy', 'CasteCategoryController@destroy')->name('
 Route::get('casteCategory/{id}', 'CasteCategoryController@edit')->name('casteCategory.edit');
 Route::patch('casteCategory/{id}', 'CasteCategoryController@update')->name('casteCategory.update');
 
-//---ClassMappping---------------
+//---Caste---------------
 Route::get('/caste/index', 'CasteController@index')->name('caste.index');
 Route::get('/caste/create', 'CasteController@create')->name('caste.create');
 Route::post('/caste/store', 'CasteController@store')->name('caste.store');
@@ -123,3 +123,13 @@ Route::get('/caste/list', 'CasteController@list')->name('caste.list');
 Route::post('/caste/destroy', 'CasteController@destroy')->name('caste.destroy');
 Route::get('caste/{id}', 'CasteController@edit')->name('caste.edit');
 Route::patch('caste/{id}', 'CasteController@update')->name('caste.update');
+
+
+//---Student---------------
+Route::get('/student/index', 'StudentController@index')->name('student.index');
+Route::get('/student/create', 'StudentController@create')->name('student.create');
+Route::post('/student/store', 'StudentController@store')->name('student.store');
+Route::get('/student/list', 'StudentController@list')->name('student.list');
+Route::post('/student/destroy', 'StudentController@destroy')->name('student.destroy');
+Route::get('student/{id}', 'StudentController@edit')->name('student.edit');
+Route::patch('student/{id}', 'StudentController@update')->name('student.update');
