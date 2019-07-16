@@ -32,7 +32,8 @@
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">HEADER</li>
     <!-- Optionally, you can add icons to the links -->
-    <li class="active treeview">
+    <!-- <li class="active treeview"> -->
+    <li class="treeview">
       <a href="#"><i class="fa fa-link"></i> <span>Master</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
@@ -53,7 +54,7 @@
     </li>
 
     <li class=""><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-    <li><a href="{{ route('sample.index') }}"><i class="fa fa-link"></i> <span>SampleCreate</span></a></li>
+    <li><a href="{{ route('student.index') }}"><i class="fa fa-link"></i> <span>Student</span></a></li>
     <li><a href="{{ route('role.index') }}"><i class="fa fa-link"></i> <span>Role</span></a></li>
     <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
     <li class="treeview">

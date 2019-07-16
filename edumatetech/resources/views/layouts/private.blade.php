@@ -7,7 +7,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Gurukulam</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <title>EdumateTech</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   
@@ -68,9 +69,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>G</b></span>
+      <span class="logo-mini"><b>ETech</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Gurukulam</b></span>
+      <span class="logo-lg"><b>EdumateTech</b></span>
     </a>
 
     <!-- Header Navbar -->

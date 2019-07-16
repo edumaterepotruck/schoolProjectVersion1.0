@@ -123,6 +123,7 @@ Route::get('/caste/list', 'CasteController@list')->name('caste.list');
 Route::post('/caste/destroy', 'CasteController@destroy')->name('caste.destroy');
 Route::get('caste/{id}', 'CasteController@edit')->name('caste.edit');
 Route::patch('caste/{id}', 'CasteController@update')->name('caste.update');
+Route::post('/caste/getCastebyReligion', 'CasteController@getCastebyReligion')->name('caste.getCastebyReligion');
 
 
 //---Student---------------

@@ -5,7 +5,7 @@
             <div class="box-header">
               <h2 class="box-title">User View   </h2>
               &nbsp;&nbsp;
-              <a href="{{ route('user.create')}}" class="btn btn-primary btn-fw btn-sm"><i class="fa fa-plus"></i> New</a>
+              <a href="{{ route('student.create')}}" class="btn btn-primary btn-fw btn-sm"><i class="fa fa-plus"></i> New</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -14,7 +14,7 @@
                         <tr>
                         <th>Id</th>
                         <th>Name</th> 
-                        <th>Role</th>                        
+                                           
                         <th>Active</th> 
                         <th>Action</th>                         
                         </tr>
@@ -25,10 +25,10 @@
                         <tr class="item{{$item->id}}">
                             <td></td>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->role}}</td>                            
+                                                     
                             <td>{{$item->record_status}}</td>
                             <td>
-                            <a href="{{ route('user.edit',$item->id)}}" class="edit-modal btn btn-info"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                            <a href="{{ route('student.edit',$item->id)}}" class="edit-modal btn btn-info"><span class="glyphicon glyphicon-edit"></span>Edit</a>
                             
         <button class="delete-modal btn btn-danger"
             data-info="{{$item->id}},{{$item->name}}">
@@ -56,7 +56,7 @@
     $('.modal-footer').on('click', '.delete', function() {
         $.ajax({
             type: 'post',
-            url: '{{ route('user.destroy') }}',
+            url: '{{ route('student.destroy') }}',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $('.did').text()

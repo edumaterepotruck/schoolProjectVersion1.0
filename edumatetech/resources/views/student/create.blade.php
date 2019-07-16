@@ -7,9 +7,10 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+            <div class="box-body">
             <form method="post" action="{{ route('student.store') }}">
             @csrf
-              <!-- <div class="box-body"> -->
+              
               
                   <div class="form-group">
                   <div class="col-sm-6">
@@ -101,7 +102,7 @@
                 <div class="form-group">                 
                 <div class="col-sm-6">
                   <label for="admissionno">Admission No</label>
-                  <input type="number" name="admission_date" class="form-control" id="admission_date" placeholder="Enter Admission No ">
+                  <input type="number" name="admission_no" class="form-control" id="admission_date" placeholder="Enter Admission No ">
                   @if ($errors->has('admission_date'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('admission_date') }}</div>
                   @endif
@@ -216,11 +217,12 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="country">Country</label>
-                  <select required name="country" class="form-control" id="country">
+                  <input type="text" name="country" class="form-control" id="country" placeholder="Country">
+                  <!-- <select required name="country" class="form-control" id="country">
                   <option value="">--Select--</option>
                   <option value="active">India</option>
                   <option value="inactive">China</option>
-                  </select>
+                  </select> -->
                   @if ($errors->has('country'))
                   <div class="invalid-feedback">{{ $errors->first('country') }}</div>
                   @endif
@@ -230,11 +232,12 @@
                 <div class="form-group">  
                 <div class="col-sm-6">
                   <label for="state">State</label>
-                  <select required name="state" class="form-control" id="state">
+                  <input type="text" name="state" class="form-control" id="state" placeholder="State">
+                  <!-- <select required name="state" class="form-control" id="state">
                   <option value="">--Select--</option>
                   <option value="active">Kerala</option>
                   <option value="inactive">Tamil Nadu</option>
-                  </select>
+                  </select> -->
                   @if ($errors->has('state'))
                   <div class="invalid-feedback">{{ $errors->first('state') }}</div>
                   @endif
@@ -244,11 +247,12 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="district">District</label>
-                  <select required name="district" class="form-control" id="district">
+                  <input type="text" name="district" class="form-control" id="district" placeholder="District">
+                  <!-- <select required name="district" class="form-control" id="district">
                   <option value="">--Select--</option>
                   <option value="active">Kottayam</option>
                   <option value="inactive">Idukki</option>
-                  </select>
+                  </select> -->
                   @if ($errors->has('district'))
                   <div class="invalid-feedback">{{ $errors->first('district') }}</div>
                   @endif
@@ -286,9 +290,9 @@
                     <label for="caste_id">Caste</label>
                     <select required name="caste_id" class="form-control" id="caste_id">
                     <option value="" disabled selected>--Select--</option>
-                    @foreach($castes as $caste)
+                    <!-- @foreach($castes as $caste)
                     <option value="{{$caste->id}}">{{$caste->name}}</option>
-                    @endforeach
+                    @endforeach -->
                     </select>
                     @if ($errors->has('caste_id'))
                     <div class="invalid-feedback">{{ $errors->first('caste_id') }}</div>
@@ -321,7 +325,7 @@
                 </div>
 
                
-              <!-- </div> -->
+              </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
@@ -332,7 +336,38 @@
           </div>
           <!-- /.box -->
 @endsection
-
 @section('scripts')
 
+<script type="text/javascript">
+
+
+  $( "form" ).on('change', '#religion_id', function() {
+    $.ajax({
+      url: "{{ route('caste.getCastebyReligion') }}",
+      method: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data:{religion_id: + $(this).val()},
+      success: function(response) {
+
+        $("#caste_id").empty();
+        $("#caste_id").append('<option value="" selected disabled>--Select--</option>');
+        var selectedval = '';
+        $.each( response, function( responseKey, responseValue ) {  
+         
+        $("#caste_id").append('<option value="'+responseValue.id+'">'+responseValue.name+'</option>');                  
+      });
+
+      },
+      fail: function( jqXHR, textStatus ) {
+       $("#caste_id").empty();
+     }
+   });
+
+  });
+
+
+
+  </script>
 @endsection

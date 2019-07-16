@@ -15,9 +15,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $data =  Student::select('users.id as id','users.name as name','users.record_status as record_status','roles.name as role')
-        ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
-        ->join('roles','roles.id','=','user__role__mappings.role_id')
+        $data =  Student::select('id','firstname as name','record_status')        
         ->get();
 
         
@@ -26,7 +24,7 @@ class StudentController extends Controller
 
     public function list()
     {       
-         $data =  Student::all();
+        $data =  Student::select('id','firstname as name','record_status')->get();
        
         return view('student/view',compact('data'));
     }
@@ -42,17 +40,37 @@ class StudentController extends Controller
     {       	
     	
     	$input = request()->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'role_id'  => ['required'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],          
+            'gender'  => ['required'],
+            'dob'  => ['required'],
+            'identification'  => ['required'],
+            'bloodGroup'  => ['nullable'],
+            'admission_date'  => ['required'],
+            'admission_no'  => ['required'],
+            'rollno'  => ['required'],
+            'registration_no'  => ['required'],
+            'gaurdianName'  => ['required'],
+            'gaurdianRelation'  => ['required'],
+            'mobile'  => ['required'],
+            'alt_mobile'  => ['nullable'],
+            'telephone'  => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:students'],
+            'address1'  => ['required'],
+            'address2'  => ['nullable'],
+            'country'  => ['required'],
+            'state'  => ['required'],
+            'district'  => ['required'],
+            'city'  => ['required'],
+            'religion_id'  => ['required'],
+            'caste_id'  => ['required'],
+            'pincode'  => ['required'],
             'record_status'  => ['required']
             
            
         ]);
         
-
-        $input['password'] = Hash::make( $input['password'] );
+        //$result = Student::create($input);       
 
         DB::beginTransaction();
 
@@ -70,19 +88,17 @@ class StudentController extends Controller
                 }
 
                 DB::commit();
-                return redirect('/student/index')->with('success', 'Student has been inserted');
+               return redirect('/student/index')->with('success', 'Student has been inserted');
         //return back()->with('success','Saved Successfully!');
     }
 
     public function edit($id)
-    {
-        $roles = Role::active();
+    {        
+        $religions =  Religion::active();
+        $castes = Caste::active();
+        $data =  Student::find( $id );  
+        return view('student/edit',compact('religions','castes','data'));
         
-        //$student = Student::find( $id );   
-        $student =  Student::select('users.id as id','users.name as name','users.email as email','users.record_status as record_status','role_id as role_id')
-        ->join('user__role__mappings','user__role__mappings.user_id','=','users.id')
-        ->find( $id );          
-        return view('student/edit', compact('student','roles'));
     }
 
 

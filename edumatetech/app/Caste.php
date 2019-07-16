@@ -13,4 +13,11 @@ class Caste extends Model
                                 ->where('record_status','=',"active")
                                 ->get();
     }
+
+    public static function byReligion($religion_id)
+    {
+        return Caste::select('id','name')
+                               ->where('religion_id','=',$religion_id)
+                               ->get();
+    }
 }

@@ -107,4 +107,15 @@ class CasteController extends Controller
 
         return response()->json(['status' => 0,'errors' => []]);
     }
+
+
+    public function getCastebyReligion(Request $request){
+
+		$caste = Caste::byReligion($request->input('religion_id'));
+		return response()->json( $caste ); 
+
+	}
+
+
+
 }

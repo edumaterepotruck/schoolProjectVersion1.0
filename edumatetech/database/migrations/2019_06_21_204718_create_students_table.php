@@ -51,6 +51,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('religion_id')->references('id')->on('religions');
             $table->foreign('caste_id')->references('id')->on('castes');
 
+            $table->string('record_status', 25)->default('active')->nullable();
             $table->timestamps();
         });
     }
