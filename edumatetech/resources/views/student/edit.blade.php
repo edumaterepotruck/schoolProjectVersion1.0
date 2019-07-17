@@ -56,7 +56,7 @@
                 <div class="form-group">
                 <div class="col-sm-6">
                   <label for="dob">D.O.B</label>
-                  <input type="date" name="dob" class="form-control" id="dob" placeholder="Enter D.O.B " value="{{ old('lastname', $data->dob) }}">
+                  <input type="date" name="dob" class="form-control" id="dob" placeholder="Enter D.O.B " value="{{ old('dob', $data->dob) }}">
                   @if ($errors->has('dob'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('dob') }}</div>
                   @endif
@@ -68,7 +68,7 @@
                 <div class="form-group">
                 <div class="col-sm-6">
                       <label for="identification"> Identification</label>                            
-                      <input id="identification" type="text" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('lastname', $data->identification) }}" required autocomplete="identification" autofocus>
+                      <input id="identification" type="text" class="form-control @error('identification') is-invalid @enderror" name="identification" value="{{ old('identification', $data->identification) }}" required autocomplete="identification" autofocus>
                       @error('identification')
                       <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                 <div class="form-group">
                 <div class="col-sm-6">
                   <label for="bloodGroup">Blood Group</label>
-                  <input type="text" name="bloodGroup" class="form-control" id="bloodGroup" placeholder="Blood Group" value="{{ old('lastname', $data->bloodGroup) }}">
+                  <input type="text" name="bloodGroup" class="form-control" id="bloodGroup" placeholder="Blood Group" value="{{ old('bloodGroup', $data->bloodGroup) }}">
                   @if ($errors->has('bloodGroup'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('bloodGroup') }}</div>
                   @endif
@@ -93,7 +93,7 @@
                 <div class="form-group">                
                  <div class="col-sm-6">
                   <label for="admission_date">Admission Date</label>
-                  <input type="date" name="admission_date" class="form-control" id="admission_date" placeholder="Enter Admission Date " value="{{ old('lastname', $data->admission_date) }}">
+                  <input type="date" name="admission_date" class="form-control" id="admission_date" placeholder="Enter Admission Date " value="{{ old('admission_date', $data->admission_date) }}">
                   @if ($errors->has('admission_date'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('admission_date') }}</div>
                   @endif
@@ -103,7 +103,7 @@
                 <div class="form-group">                 
                 <div class="col-sm-6">
                   <label for="admissionno">Admission No</label>
-                  <input type="number" name="admission_no" class="form-control" id="admission_no" placeholder="Enter Admission No " value="{{ old('lastname', $data->admission_no) }}">
+                  <input type="number" name="admission_no" class="form-control" id="admission_no" placeholder="Enter Admission No " value="{{ old('admission_no', $data->admission_no) }}">
                   @if ($errors->has('admission_date'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('admission_date') }}</div>
                   @endif
@@ -113,7 +113,7 @@
                 <div class="form-group">                 
                 <div class="col-sm-6">
                   <label for="rollno">Roll No</label>
-                  <input type="number" name="rollno" class="form-control" id="rollno" placeholder="Enter Roll No " value="{{ old('lastname', $data->rollno) }}">
+                  <input type="number" name="rollno" class="form-control" id="rollno" placeholder="Enter Roll No " value="{{ old('rollno', $data->rollno) }}">
                   @if ($errors->has('rollno'))
             <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('rollno') }}</div>
                   @endif
@@ -123,7 +123,7 @@
                 <div class="form-group">                 
                 <div class="col-sm-6">
                   <label for="registration_no">Registration No</label>
-                  <input type="number" name="registration_no" class="form-control" id="registration_no" placeholder="Enter Registration No " value="{{ old('lastname', $data->registration_no) }}">
+                  <input type="number" name="registration_no" class="form-control" id="registration_no" placeholder="Enter Registration No " value="{{ old('registration_no', $data->registration_no) }}">
                   @if ($errors->has('registration_no'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('registration_no') }}</div>
                   @endif
@@ -133,7 +133,7 @@
                 <div class="form-group">   
                   <div class="col-sm-6">
                   <label for="gaurdianName">Gaurdian Name</label>
-                  <input type="text" name="gaurdianName" class="form-control" id="gaurdianName" placeholder="Gaurdian Name" value="{{ old('lastname', $data->gaurdianName) }}">
+                  <input type="text" name="gaurdianName" class="form-control" id="gaurdianName" placeholder="Gaurdian Name" value="{{ old('gaurdianName', $data->gaurdianName) }}">
                   @if ($errors->has('gaurdianName'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('gaurdianName') }}</div>
                   @endif
@@ -144,7 +144,7 @@
                 <div class="form-group"> 
                 <div class="col-sm-6">
                   <label for="gaurdianRelation">Gaurdian Relation</label>
-                  <input type="text" name="gaurdianRelation" class="form-control" id="gaurdianRelation" placeholder="Gaurdian Relation" value="{{ old('lastname', $data->gaurdianRelation) }}">
+                  <input type="text" name="gaurdianRelation" class="form-control" id="gaurdianRelation" placeholder="Gaurdian Relation" value="{{ old('gaurdianRelation', $data->gaurdianRelation) }}">
                   @if ($errors->has('gaurdianRelation'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('gaurdianRelation') }}</div>
                   @endif
@@ -154,7 +154,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="mobile">Mobile No</label>
-                  <input type="tel" name="mobile" class="form-control" id="mobile" pattern="[0-9]{10}" placeholder="Enter Mobile No " value="{{ old('lastname', $data->mobile) }}">
+                  <input type="tel" name="mobile" class="form-control" id="mobile" pattern="[0-9]{10}" placeholder="Enter Mobile No " value="{{ old('mobile', $data->mobile) }}">
                   @if ($errors->has('mobile'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('mobile') }}</div>
                   @endif
@@ -164,7 +164,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="alt_mobile">Alternate Mobile No</label>
-                  <input type="tel" name="alt_mobile" class="form-control" id="alt_mobile" pattern="[0-9]{10}" placeholder="Enter Mobile No " value="{{ old('lastname', $data->alt_mobile) }}">
+                  <input type="tel" name="alt_mobile" class="form-control" id="alt_mobile" pattern="[0-9]{10}" placeholder="Enter Mobile No " value="{{ old('alt_mobile', $data->alt_mobile) }}">
                   @if ($errors->has('alt_mobile'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('alt_mobile') }}</div>
                   @endif
@@ -174,7 +174,7 @@
                 <div class="form-group">
                   <div class="col-sm-6">
                   <label for="telephone">Telephone No</label>
-                  <input type="number" name="telephone" class="form-control" id="telephone" placeholder="Enter telephone No " value="{{ old('lastname', $data->telephone) }}">
+                  <input type="number" name="telephone" class="form-control" id="telephone" placeholder="Enter telephone No " value="{{ old('telephone', $data->telephone) }}">
                   @if ($errors->has('telephone'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('telephone') }}</div>
                   @endif
@@ -184,7 +184,7 @@
                 <div class="form-group">  
                 <div class="col-sm-6">
                   <label for="email" >{{ ('E-Mail Address') }}</label>
-                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('lastname', $data->email) }}" required autocomplete="email">
+                  <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $data->email) }}" required autocomplete="email">
                   @error('email')
                   <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -196,7 +196,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="address1">Address 1</label>
-                  <textarea id="address1" name="address1" class="form-control" >{{ old('lastname', $data->address1) }}</textarea>
+                  <textarea id="address1" name="address1" class="form-control" >{{ old('address1', $data->address1) }}</textarea>
                   @if ($errors->has('address1'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('address1') }}</div>
                   @endif
@@ -206,7 +206,7 @@
                 <div class="form-group">
                   <div class="col-sm-6">
                   <label for="address2">Address 2</label>
-                  <textarea id="address2" name="address2" class="form-control" >{{ old('lastname', $data->address2) }}</textarea>
+                  <textarea id="address2" name="address2" class="form-control" >{{ old('address2', $data->address2) }}</textarea>
                   @if ($errors->has('address2'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('address2') }}</div>
                   @endif
@@ -218,7 +218,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="country">Country</label>
-                  <input type="text" name="country" class="form-control" id="country" placeholder="Country" value="{{ old('lastname', $data->country) }}">
+                  <input type="text" name="country" class="form-control" id="country" placeholder="Country" value="{{ old('country', $data->country) }}">
                   <!-- <select required name="country" class="form-control" id="country">
                   <option value="">--Select--</option>
                   <option value="active">India</option>
@@ -233,7 +233,7 @@
                 <div class="form-group">  
                 <div class="col-sm-6">
                   <label for="state">State</label>
-                  <input type="text" name="state" class="form-control" id="state" placeholder="State" value="{{ old('lastname', $data->state) }}">
+                  <input type="text" name="state" class="form-control" id="state" placeholder="State" value="{{ old('state', $data->state) }}">
                   <!-- <select required name="state" class="form-control" id="state">
                   <option value="">--Select--</option>
                   <option value="active">Kerala</option>
@@ -248,7 +248,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="district">District</label>
-                  <input type="text" name="district" class="form-control" id="district" placeholder="District" value="{{ old('lastname', $data->district) }}">
+                  <input type="text" name="district" class="form-control" id="district" placeholder="District" value="{{ old('district', $data->district) }}">
                   <!-- <select required name="district" class="form-control" id="district">
                   <option value="">--Select--</option>
                   <option value="active">Kottayam</option>
@@ -263,7 +263,7 @@
                 <div class="form-group"> 
                  <div class="col-sm-6">
                   <label for="city">City</label>
-                  <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{ old('lastname', $data->city) }}">
+                  <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{ old('city', $data->city) }}">
                   @if ($errors->has('city'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('city') }}</div>
                   @endif
@@ -339,7 +339,13 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
+ $(document).ready(function(){
+    $('#religion_id').trigger('change');
+    // setTimeout( function(){ 
+    //   $('#programme').trigger('change');
+    // }  , 1000 );
 
+  });
 
   $( "form" ).on('change', '#religion_id', function() {
     $.ajax({

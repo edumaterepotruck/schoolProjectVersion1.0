@@ -106,12 +106,34 @@ class StudentController extends Controller
     {
        
         $input = request()->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255','unique:users,email,'. $id ],
-            'record_status'  => ['required'] ,
-            //'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role_id'  => ['required']
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],          
+            'gender'  => ['required'],
+            'dob'  => ['required'],
+            'identification'  => ['required'],
+            'bloodGroup'  => ['nullable'],
+            'admission_date'  => ['required'],
+            'admission_no'  => ['required'],
+            'rollno'  => ['required'],
+            'registration_no'  => ['required'],
+            'gaurdianName'  => ['required'],
+            'gaurdianRelation'  => ['required'],
+            'mobile'  => ['required'],
+            'alt_mobile'  => ['nullable'],
+            'telephone'  => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:students,email,'. $id],
+            'address1'  => ['required'],
+            'address2'  => ['nullable'],
+            'country'  => ['required'],
+            'state'  => ['required'],
+            'district'  => ['required'],
+            'city'  => ['required'],
+            'religion_id'  => ['required'],
+            'caste_id'  => ['required'],
+            'pincode'  => ['required'],
+            'record_status'  => ['required']
             
+           
         ]);
         
 
@@ -119,15 +141,10 @@ class StudentController extends Controller
 
         try{
             
-        $users=Student::find($id);
-        $users->update( $input );
+        $students=Student::find($id);
+        $students->update( $input );
                 
-        $userRole =User_Role_Mapping::where('user_id',$users->id)->first();
-        $userRole->user_id = $users->id;
-        $userRole->role_id = $input['role_id'];
-
-
-        $userRole->save();
+       
         }
         catch(\Exception $e)
         {
