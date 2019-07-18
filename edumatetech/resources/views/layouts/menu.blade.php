@@ -50,23 +50,24 @@
         <li><a href="{{ route('casteCategory.index') }}">Caste Category</a></li>
         <li><a href="{{ route('religion.index') }}">Religion</a></li>        
         <li><a href="{{ route('caste.index') }}">Caste</a></li>
+        <li><a href="{{ route('subject.index') }}">Subject</a></li>
       </ul>
     </li>
 
-    <li class=""><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+    <!-- <li class=""><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li> -->
     <li><a href="{{ route('student.index') }}"><i class="fa fa-link"></i> <span>Student</span></a></li>
     <li><a href="{{ route('role.index') }}"><i class="fa fa-link"></i> <span>Role</span></a></li>
-    <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+    <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
     <li class="treeview">
     <li class="treeview">
-      <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+      <a href="#"><i class="fa fa-link"></i> <span>Time Table</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="#">Link in level 2</a></li>
-        <li><a href="#">Link in level 2</a></li>
+      <li><a href="{{ route('day.index') }}">Day</a></li>
+      <li><a href="{{ route('period.index') }}">Period</a></li>
       </ul>
     </li>
   </ul>

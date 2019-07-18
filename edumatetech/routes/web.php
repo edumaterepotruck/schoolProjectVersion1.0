@@ -134,3 +134,30 @@ Route::get('/student/list', 'StudentController@list')->name('student.list');
 Route::post('/student/destroy', 'StudentController@destroy')->name('student.destroy');
 Route::get('student/{id}', 'StudentController@edit')->name('student.edit');
 Route::patch('student/{id}', 'StudentController@update')->name('student.update');
+
+//---Subject---------------
+Route::get('/subject/index', 'SubjectController@index')->name('subject.index');
+Route::get('/subject/create', 'SubjectController@create')->name('subject.create');
+Route::post('/subject/store', 'SubjectController@store')->name('subject.store');
+Route::get('/subject/list', 'SubjectController@list')->name('subject.list');
+Route::post('/subject/destroy', 'SubjectController@destroy')->name('subject.destroy');
+Route::get('subject/{id}', 'SubjectController@edit')->name('subject.edit');
+Route::patch('subject/{id}', 'SubjectController@update')->name('subject.update');
+
+//---Day---------------
+Route::get('/day/index', 'DayController@index')->name('day.index');
+Route::get('/day/create', 'DayController@create')->name('day.create');
+Route::post('/day/store', 'DayController@store')->name('day.store');
+Route::get('/day/list', 'DayController@list')->name('day.list');
+Route::post('/day/destroy', 'DayController@destroy')->name('day.destroy');
+Route::get('day/{id}', 'DayController@edit')->name('day.edit');
+Route::patch('day/{id}', 'DayController@update')->name('day.update');
+
+//---Period---------------
+Route::get('/period/index', 'PeriodController@index')->name('period.index');
+Route::get('/period/create', 'PeriodController@create')->name('period.create');
+Route::post('/period/store', 'PeriodController@store')->name('period.store');
+Route::get('/period/list', 'PeriodController@list')->name('period.list');
+Route::post('/period/destroy', 'PeriodController@destroy')->name('period.destroy');
+Route::get('period/{id}', 'PeriodController@edit')->name('period.edit');
+Route::patch('period/{id}', 'PeriodController@update')->name('period.update');
