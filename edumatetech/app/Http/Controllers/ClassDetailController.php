@@ -11,6 +11,11 @@ use App\ClassDetail;
 
 class ClassDetailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data =  ClassDetail::all();

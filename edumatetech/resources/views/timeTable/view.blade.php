@@ -3,9 +3,9 @@
 @section('content')
   <div class="box">
             <div class="box-header">
-              <h2 class="box-title">Class Mapping View   </h2>
+              <h2 class="box-title">TimeTable View   </h2>
               &nbsp;&nbsp;
-              <a href="{{ route('classMapping.create')}}" class="btn btn-primary btn-fw btn-sm"><i class="fa fa-plus"></i> New</a>
+              <a href="{{ route('timeTable.create')}}" class="btn btn-primary btn-fw btn-sm"><i class="fa fa-plus"></i> New</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -13,10 +13,10 @@
                     <thead>
                         <tr>
                         <th>Id</th>
-                        <th>Batch Name</th>
-                        <th>Class</th> 
-                        <th>Division</th>
-                        <th>Branch</th>                        
+                        <th>Batch</th> 
+                        <th>Day</th>
+                        <th>Period</th> 
+                        <th>Subject</th>                        
                         <th>Active</th> 
                         <th>Action</th>                         
                         </tr>
@@ -27,12 +27,12 @@
                         <tr class="item{{$item->id}}">
                             <td></td>
                             <td>{{$item->batchname}}</td>
-                            <td>{{$item->class}}</td>
-                            <td>{{$item->division}}</td>
-                            <td>{{$item->branch}}</td>                            
+                            <td>{{$item->day}}</td>
+                            <td>{{$item->period}}</td> 
+                            <td>{{$item->subject}}</td>                            
                             <td>{{$item->record_status}}</td>
                             <td>
-                            <a href="{{ route('classMapping.edit',$item->id)}}" class="edit-modal btn btn-info"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                            <a href="{{ route('timeTable.edit',$item->id)}}" class="edit-modal btn btn-info"><span class="glyphicon glyphicon-edit"></span>Edit</a>
                             
         <button class="delete-modal btn btn-danger"
             data-info="{{$item->id}},{{$item->batchname}}">
@@ -60,7 +60,7 @@
     $('.modal-footer').on('click', '.delete', function() {
         $.ajax({
             type: 'post',
-            url: '{{ route('classMapping.destroy') }}',
+            url: '{{ route('timeTable.destroy') }}',
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $('.did').text()

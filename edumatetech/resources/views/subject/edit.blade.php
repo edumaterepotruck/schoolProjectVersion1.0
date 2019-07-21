@@ -13,7 +13,7 @@
             @csrf
               <div class="box-body">
               <div class="form-group">
-                  <label for="name">Name</label>
+                  <label for="name">Subject</label>
                   <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $subject->name) }}" >
                   @if ($errors->has('name'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('name') }}</div>
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="subtype">Active</label>
+                  <label for="subtype">Level</label>
                   <select required name="subtype" class="form-control" id="record_status">
                 <option value="">--Select--</option>
                 <option value="secondary" {{ old('subtype', $subject->subtype) == "secondary" ? 'selected' : '' }} >Secondary</option>

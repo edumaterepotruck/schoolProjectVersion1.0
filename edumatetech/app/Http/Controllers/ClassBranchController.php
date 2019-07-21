@@ -10,6 +10,11 @@ use App\ClassBranch;
 
 class ClassBranchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data =  ClassBranch::all();

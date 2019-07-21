@@ -9,7 +9,7 @@ class Period extends Model
     protected $guarded = [];
     public static function active() {
         
-        return Subject::select('id', 'periodname')
+        return Period::select('id', 'periodname')
                                 ->where('record_status','=',"active")
                                 ->get();
     }

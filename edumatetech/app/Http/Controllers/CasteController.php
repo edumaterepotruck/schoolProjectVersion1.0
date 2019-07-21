@@ -12,6 +12,11 @@ use App\Caste;
 
 class CasteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         

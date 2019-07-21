@@ -161,3 +161,13 @@ Route::get('/period/list', 'PeriodController@list')->name('period.list');
 Route::post('/period/destroy', 'PeriodController@destroy')->name('period.destroy');
 Route::get('period/{id}', 'PeriodController@edit')->name('period.edit');
 Route::patch('period/{id}', 'PeriodController@update')->name('period.update');
+
+//---Period---------------
+Route::get('/timeTable/index', 'TimetableController@index')->name('timeTable.index');
+Route::get('/timeTable/create', 'TimetableController@create')->name('timeTable.create');
+Route::post('/timeTable/store', 'TimetableController@store')->name('timeTable.store');
+Route::get('/timeTable/list', 'TimetableController@list')->name('timeTable.list');
+Route::post('/timeTable/destroy', 'TimetableController@destroy')->name('timeTable.destroy');
+Route::get('timeTable/{id}', 'TimetableController@edit')->name('timeTable.edit');
+Route::patch('timeTable/{id}', 'TimetableController@update')->name('timeTable.update');
+Route::post('/timeTable/getTimeTablebyBatch', 'TimetableController@getTimeTablebyBatch')->name('timeTable.getTimeTablebyBatch');

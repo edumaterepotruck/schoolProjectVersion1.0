@@ -3,7 +3,7 @@
 @section('content')
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Religion Create</h3>
+              <h3 class="box-title">Subject Create</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -11,7 +11,7 @@
             @csrf
               <div class="box-body">
               <div class="form-group">
-                  <label for="name">Religion</label>
+                  <label for="name">Subject</label>
                   <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name">
                   @if ($errors->has('name'))
                   <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('name') }}</div>
@@ -19,7 +19,7 @@
                 </div>                
 
                 <div class="form-group">
-                  <label for="subtype">Active</label>
+                  <label for="subtype">Level</label>
                   <select required name="subtype" class="form-control" id="subtype">
                 <option value="">--Select--</option>
                 <option value="secondary">Secondary</option>

@@ -12,6 +12,11 @@ use App\User_Role_Mapping;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data =  User::select('users.id as id','users.name as name','users.record_status as record_status','roles.name as role')

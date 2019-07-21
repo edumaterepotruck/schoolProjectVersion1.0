@@ -12,80 +12,107 @@ use App\Subject;
 use App\Timetable;
 use App\ClassMapping;
 
+
 class TimetableController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         
-        $data =  Caste::select('castes.id as id','castes.name as caste','religions.name as religion','caste_categories.name as caste_categorie','castes.record_status as record_status')
-        ->join('religions','castes.religion_id','=','religions.id')
-        ->join('caste_categories','castes.caste_categories_id','=','caste_categories.id')
+        $data =  Timetable::select('timetables.id as id','class_mappings.batchname as batchname','days.dayname as day','periods.periodname as period','subjects.name as subject','timetables.record_status as record_status')
+        ->join('days','timetables.days_id','=','days.id')
+        ->join('periods','timetables.periods_id','=','periods.id')
+        ->join('subjects','timetables.subjects_id','=','subjects.id')
+        ->join('class_mappings','timetables.class_mappings_id','=','class_mappings.id')
         ->get();
-        return view('caste/view',compact('data'));
+        return view('timeTable/view',compact('data'));
     }
 
     public function list()
     {       
-        $data =  Caste::select('castes.id as id','castes.name as caste','religions.name as religion','caste_categories.name as caste_categorie','castes.record_status as record_status')
-        ->join('religions','castes.religion_id','=','religions.id')
-        ->join('caste_categories','castes.caste_categories_id','=','caste_categories.id')
-        ->get();       
-        return view('caste/view',compact('data'));
+        // $data =  TimeTable::select('castes.id as id','castes.name as timeTable','religions.name as religion','caste_categories.name as caste_categorie','castes.record_status as record_status')
+        // ->join('religions','castes.religion_id','=','religions.id')
+        // ->join('caste_categories','castes.caste_categories_id','=','caste_categories.id')
+        // ->get();       
+        $classMappings = ClassMapping::active();
+         return view('timeTable/details',compact('classMappings'));
     }
 
     public function create()
     {
-        $day =  Day::active();
-        $period =  Period::active();
-        $subject =  Subject::active();
-        $classMappings =  ClassMapping::active();
+        $days =  Day::active();
+        $periods =  Period::active();
+        $subjects =  Subject::active();
+        $classMappings = ClassMapping::active();
        
         
-        return view('caste/create',compact('religions','caste_categories'));
+        return view('timeTable/create',compact('days','periods','subjects','classMappings'));
     }
 
-    public function store(Caste $caste)
+    public function store(TimeTable $timeTable)
     {       	
     	
     	$input = request()->validate([
-            'name'           => ['required'],
-            'religion_id'  => ['required'],
-            'caste_categories_id'  => ['nullable'],            
-            'record_status'  => ['required']
+            'class_mappings_id'  => ['required'],
+            'days_id'            => ['required'],
+            'periods_id'         => ['required'],
+            'subjects_id'        => ['required'],            
+            'record_status'      => ['required']
            
         ]);
 
-       
-        $caste->create($input);
-        return redirect('/caste/index')->with('success', 'Saved Successfully!');
+       try{
+            $timeTable->create($input);
+            }         
+            catch (\Exception $e) 
+            {
+            dd($e->getMessage());
+            }  
+        return redirect('/timeTable/index')->with('success', 'Saved Successfully!');
         //return back()->with('success','Saved Successfully!');
     }
 
     public function edit($id)
     {         
        
-        $religions =  Religion::active();
-        $caste_categories =  CasteCategory::active();
+        $days =  Day::active();
+        $periods =  Period::active();
+        $subjects =  Subject::active();
+        $classMappings = ClassMapping::active();
+       
 
-        $data =  Caste::select('castes.id as id','castes.name as caste','castes.religion_id as religion','caste_categories_id as caste_categorie','castes.record_status as record_status')
-               ->find( $id );  
-        return view('caste/edit',compact('religions','caste_categories','data'));
+        $data =  Timetable::select('timetables.id as id','class_mappings_id as batchname','days_id as day','periods_id as period','subjects_id as subject','timetables.record_status as record_status')
+        ->find( $id );  
+
+       // dd($data);
+        return view('timeTable/edit',compact('days','periods','subjects','classMappings','data'));
     }
 
 
-    public function update(Caste $caste, $id)
+    public function update(TimeTable $timeTable, $id)
     {
        
         $input = request()->validate([
-            'name'           => ['required'],
-            'religion_id'  => ['required'],
-            'caste_categories_id'  => ['nullable'],            
-            'record_status'  => ['required']
+            'class_mappings_id'  => ['required'],
+            'days_id'            => ['required'],
+            'periods_id'         => ['required'],
+            'subjects_id'        => ['required'],            
+            'record_status'      => ['required']
            
         ]);
-        $classMappings=Caste::find($id);
-        $classMappings->update( $input );
-        return redirect('/caste/index')->with('success', 'Caste has been updated');
+        try{
+        $timeTables=TimeTable::find($id);
+        $timeTables->update( $input );
+    }         
+    catch (\Exception $e) 
+    {
+    dd($e->getMessage());
+    } 
+        return redirect('/timeTable/index')->with('success', 'TimeTable has been updated');
         
     }
 
@@ -94,11 +121,11 @@ class TimetableController extends Controller
     {
         $id = $request->input('id');
         if( $id ) {
-            $Caste = Caste::find( $id );     
-            if($Caste){                
+            $TimeTable = TimeTable::find( $id );     
+            if($TimeTable){                
 
                 try {
-                    $Caste->delete();
+                    $TimeTable->delete();
                         
                     return response()->json(['status' => 1]);
                     }         
@@ -112,5 +139,34 @@ class TimetableController extends Controller
 
         return response()->json(['status' => 0,'errors' => []]);
     }
+
+    public function getTimeTablebyBatch(Request $request){
+       //public function getTimeTablebyBatch(){
+        // $data =  Timetable::select('timetables.id as id','class_mappings.batchname as batchname','days.dayname as day','periods.periodname as period','subjects.name as subject','timetables.record_status as record_status')
+        // ->join('days','timetables.days_id','=','days.id')
+        // ->join('periods','timetables.periods_id','=','periods.id')
+        // ->join('subjects','timetables.subjects_id','=','subjects.id')
+        // ->join('class_mappings','timetables.class_mappings_id','=','class_mappings.id')
+        // ->where('timetables.class_mappings_id','=',$request->input('class_mappings_id'))
+        // ->get();
+
+        $days = Timetable::select('days.dayname as day')
+        ->join('days','timetables.days_id','=','days.id')
+        ->where('timetables.class_mappings_id','=',$request->input('class_mappings_id'))
+        ->distinct()
+        ->get();
+
+        $periods = Timetable::select('periods.periodname as period')
+        ->join('periods','timetables.periods_id','=','periods.id')
+        ->where('timetables.class_mappings_id','=',$request->input('class_mappings_id'))
+        ->distinct()
+        ->get();
+
+        //dd($days);
+
+        return response()->json(['days ' => $days, 'periods' => $periods]);
+//return response()->json( $days ); 
+
+	}
 
 }

@@ -15,6 +15,7 @@ class CreateClassMappingsTable extends Migration
     {
         Schema::create('class_mappings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('batchname', 100);
             $table->bigInteger('class_detail_id')->unsigned();
             $table->bigInteger('class_division_id')->unsigned();
             $table->bigInteger('class_branch_id')->unsigned()->nullable();

@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                         <th>Id</th>
-                        <th>Name</th> 
+                        <th>Subject</th> 
                         <th>Level</th>                        
                         <th>Active</th> 
                         <th>Action</th>                         

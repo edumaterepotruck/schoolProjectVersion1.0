@@ -11,7 +11,14 @@
             @csrf
               <div class="box-body">
               
-             
+                  <div class="form-group">
+                    <label for="batchname">Batch Name</label>
+                    <input type="text" name="batchname" class="form-control" id="batchname" placeholder="Enter Name">
+                    @if ($errors->has('batchname'))
+                    <div class="invalid-feedback"  style="color:Tomato;">{{ $errors->first('batchname') }}</div>
+                    @endif
+                  </div>     
+
                   <div class="form-group">
                     <label for="class_detail_id">Class</label>
                     <select required name="class_detail_id" class="form-control" id="class_detail_id">
