@@ -8,7 +8,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <div class="box-body">
-            <form method="post" action="">
+            <form method="post" action="{{ route('timeTable.getTimeTablebyBatch') }}">
             @csrf
               
 
@@ -68,54 +68,88 @@
 @section('scripts')
 
 <script type="text/javascript">
- $(document).ready(function(){
-  $('#religion_id').trigger('change');
+//  $(document).ready(function(){
+//   $('#religion_id').trigger('change');
 
-});
+// });
 
 var op ="";
+var days = [],
+  periods = [];
 
-  $( "form" ).on('change', '#class_mappings_id', function() {
-    $.ajax({
-      url: "{{ route('timeTable.getTimeTablebyBatch') }}",
-      method: 'POST',
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      data:{class_mappings_id: + $(this).val()},
-      success: function(response) {
-        //alert(JSON.stringify(response));
-        op+='<table class="table table-striped">';
-        op+='<tr>';
-        $.each( response, function( responseKey, responseValue ) {
-            alert(JSON.stringify(responseValue));
-           // alert(responseValue);
-            //op+='<th>'+responseValue['period']+'</th>';
-            $.each( responseValue, function( responseKey1, responseValue ) {
-            //alert(JSON.stringify(responseValue));
-            ///alert(responseValue['period']);
-            op+='<th>'+responseValue+'</th>';
-          });
-          });
-          op+='</tr>';
-    //------------------------------
+//   $( "form" ).on('change', '#class_mappings_id', function() {
+//     $.ajax({
+//       url: "{{ route('timeTable.getTimeTablebyBatch') }}",
+//       method: 'POST',
+//       headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//       },
+//       data:{class_mappings_id: + $(this).val()},
+//       success: function(response) {
+
+//         //var data = response;
+//       //   response.forEach(function(v) {
+//       //     days.push(v.day);
+//       //     periods.push(v.period);
+//       // });
+
+//       // console.log(days, periods);
+
+// $.each( response, function( responseKey, responseValue ) {
+     
+//       days.push(responseValue.day);
+//       periods.push(responseValue.period);
+//       });
+//       var d= days.filter(distinct);
+//       console.log(d, periods);
+
+
+
+//      // console.log(JSON.stringify(response))  ;
+
+//       // $.each( response, function( responseKey, responseValue ) {
+//       // console.log(responseValue);
+//       // });
+
+
+//        // JSON.stringify(response);
+//         // op+='<table class="table table-striped">';
+//         // op+='<tr>';
+// //         var jsonData=array();
+// //         $.each( response, function( responseKey, responseValue ) {
+// //           //  console.log(responseValue);
+// //            // alert(responseValue);
+// //             //op+='<th>'+responseValue['period']+'</th>';
+// //              jsonData[] = responseValue
+// //           });
+// // console.log(jsonData);
+// //           var obj = JSON.parse(JSON.stringify(response));
+         
+// // for (var i = 0; i < obj.days.length; i++) {
+// //    var counter = obj.days[i];
+// //    alert(counter.subject);
+// // }
+
+
+//           //op+='</tr>';
+//     //------------------------------
     
-       // op+='<tr><th>SN</th><th>Date</th><th>Account Type</th><th>Account Code</th><th>Narration</th><th>Amount</th></tr>';
-        // for(var i=0;i<response.length;i++){
-        //   op+='<tr>';
-        //   op+='<td>'+(i+1)+'</td><td>'+data2[i].transdate+'</td><td>'+data2[i].acctype+'</td><td>'+data2[i].accounts_code+'</td><td>'+data2[i].narration+'</td><td>'+data2[i].amount+'</td></tr>';
-        // }
-         op+='</table>';
-         $('#tableview').html(op);
-    //-------------------------------
+//        // op+='<tr><th>SN</th><th>Date</th><th>Account Type</th><th>Account Code</th><th>Narration</th><th>Amount</th></tr>';
+//         // for(var i=0;i<response.length;i++){
+//         //   op+='<tr>';
+//         //   op+='<td>'+(i+1)+'</td><td>'+data2[i].transdate+'</td><td>'+data2[i].acctype+'</td><td>'+data2[i].accounts_code+'</td><td>'+data2[i].narration+'</td><td>'+data2[i].amount+'</td></tr>';
+//         // }
+//         //  op+='</table>';
+//         //  $('#tableview').html(op);
+//     //-------------------------------
 
-      },
-      fail: function( jqXHR, textStatus ) {
+//       },
+//       fail: function( jqXHR, textStatus ) {
       
-     }
-   });
+//      }
+//    });
 
-  });
+//   });
 
 
 

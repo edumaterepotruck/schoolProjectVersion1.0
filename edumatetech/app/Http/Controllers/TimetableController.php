@@ -142,13 +142,13 @@ class TimetableController extends Controller
 
     public function getTimeTablebyBatch(Request $request){
        //public function getTimeTablebyBatch(){
-        // $data =  Timetable::select('timetables.id as id','class_mappings.batchname as batchname','days.dayname as day','periods.periodname as period','subjects.name as subject','timetables.record_status as record_status')
-        // ->join('days','timetables.days_id','=','days.id')
-        // ->join('periods','timetables.periods_id','=','periods.id')
-        // ->join('subjects','timetables.subjects_id','=','subjects.id')
-        // ->join('class_mappings','timetables.class_mappings_id','=','class_mappings.id')
-        // ->where('timetables.class_mappings_id','=',$request->input('class_mappings_id'))
-        // ->get();
+        $data =  Timetable::select('timetables.id as id','class_mappings.batchname as batchname','days.dayname as day','periods.periodname as period','subjects.name as subject','timetables.record_status as record_status')
+        ->join('days','timetables.days_id','=','days.id')
+        ->join('periods','timetables.periods_id','=','periods.id')
+        ->join('subjects','timetables.subjects_id','=','subjects.id')
+        ->join('class_mappings','timetables.class_mappings_id','=','class_mappings.id')
+        ->where('timetables.class_mappings_id','=',$request->input('class_mappings_id'))
+        ->get();
 
         $days = Timetable::select('days.dayname as day')
         ->join('days','timetables.days_id','=','days.id')
@@ -164,9 +164,9 @@ class TimetableController extends Controller
 
         //dd($days);
 
-        return response()->json(['days ' => $days, 'periods' => $periods]);
-//return response()->json( $days ); 
-
+        //return response()->json(['days ' => $days, 'periods' => $periods]);
+//return response()->json( $data ); 
+return view('timeTable/detailview',compact('days','periods','data'));
 	}
 
 }
