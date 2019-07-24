@@ -167,6 +167,7 @@ class TimetableController extends Controller
         //return response()->json(['days ' => $days, 'periods' => $periods]);
 //return response()->json( $data ); 
 return view('timeTable/detailview',compact('days','periods','data'));
+//return view('timeTable/detailview')->with('days', $days)->with('periods', $periods)->with('data', $data);
 	}
 
 }
