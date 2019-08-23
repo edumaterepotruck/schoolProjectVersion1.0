@@ -171,3 +171,12 @@ Route::post('/timeTable/destroy', 'TimetableController@destroy')->name('timeTabl
 Route::get('timeTable/{id}', 'TimetableController@edit')->name('timeTable.edit');
 Route::patch('timeTable/{id}', 'TimetableController@update')->name('timeTable.update');
 Route::post('/timeTable/getTimeTablebyBatch', 'TimetableController@getTimeTablebyBatch')->name('timeTable.getTimeTablebyBatch');
+
+//---Examtype---------------
+Route::get('/examtype/index', 'ExamtypeController@index')->name('examtype.index');
+Route::get('/examtype/create', 'ExamtypeController@create')->name('examtype.create');
+Route::post('/examtype/store', 'ExamtypeController@store')->name('examtype.store');
+Route::get('/examtype/list', 'ExamtypeController@list')->name('examtype.list');
+Route::post('/examtype/destroy', 'ExamtypeController@destroy')->name('examtype.destroy');
+Route::get('examtype/{id}', 'ExamtypeController@edit')->name('examtype.edit');
+Route::patch('examtype/{id}', 'ExamtypeController@update')->name('examtype.update');

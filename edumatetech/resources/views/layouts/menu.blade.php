@@ -34,7 +34,7 @@
     <!-- Optionally, you can add icons to the links -->
     <!-- <li class="active treeview"> -->
     <li class="treeview">
-      <a href="#"><i class="fa fa-link"></i> <span>Master</span>
+      <a href="#"><i class="fa fa-link"></i> <span>Super Master</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -51,6 +51,24 @@
         <li><a href="{{ route('religion.index') }}">Religion</a></li>        
         <li><a href="{{ route('caste.index') }}">Caste</a></li>
         <li><a href="{{ route('subject.index') }}">Subject</a></li>
+      </ul>
+    </li>
+
+    <li class="treeview">
+      <a href="#"><i class="fa fa-link"></i> <span>Master</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ route('academicyear.index') }}">Academic Year</a></li>        
+        <li><a href="{{ route('user.index') }}">User</a></li>        
+        <li><a href="{{ route('classMapping.index') }}">Manage Batch</a></li>
+        <li><a href="{{ route('casteCategory.index') }}">Caste Category</a></li>
+        <li><a href="{{ route('religion.index') }}">Religion</a></li>        
+        <li><a href="{{ route('caste.index') }}">Caste</a></li>
+        <li><a href="{{ route('subject.index') }}">Subject</a></li>
+        <li><a href="{{ route('examtype.index') }}">Exam Type</a></li>
       </ul>
     </li>
 
