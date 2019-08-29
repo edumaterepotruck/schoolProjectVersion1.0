@@ -8,8 +8,11 @@ use Carbon\Carbon;
 class AcademicYear extends Model
 {
     protected $guarded = [];
-    // protected $casts = [
-    //     'from' => 'date:d-m-Y',
-    //     'to' => 'date:d-m-Y'
-    // ];
+   
+    public static function active() {
+        
+        return AcademicYear::select('id', 'name')
+                                ->where('record_status','=',"active")
+                                ->get();
+    }
 }

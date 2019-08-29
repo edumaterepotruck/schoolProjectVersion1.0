@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\Religion;
 use App\Caste;
 use App\Student;
+use App\AcademicYear;
+use App\ClassMapping;
+use App\StudentClassMapp;
 
 class StudentController extends Controller
 {
@@ -39,13 +42,17 @@ class StudentController extends Controller
     {
         $religions =  Religion::active();
         $castes = Caste::active();
-        return view('student/create',compact('religions','castes'));
+        $academicyear = AcademicYear::active();
+        $class = ClassMapping::active();
+        return view('student/create',compact('religions','castes','academicyear','class'));
     }
 
     public function store(Student $student)
     {       	
     	
-    	$input = request()->validate([
+    	$validator = request()->validate([
+            'academic_years_id' => ['required'],
+            'class_mappings_id' => ['required'], 
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],          
             'gender'  => ['required'],
@@ -75,20 +82,33 @@ class StudentController extends Controller
             
            
         ]);
+
+
+        //dd($validator['academic_years_id']);
         
         //$result = Student::create($input);       
 
         DB::beginTransaction();
 
                 try{
-                    
-                $result = Student::create($input);                
-
-                
+                    $input =   request(['firstname', 'lastname', 'gender','dob',
+                    'identification','bloodGroup','admission_date','admission_no',
+                    'rollno','registration_no','gaurdianName','gaurdianRelation','mobile',
+                    'alt_mobile','telephone','email','address1',
+                    'address2','country','state','district',
+                    'city','religion_id','caste_id','pincode','record_status']);
+               $stud=Student::create($input);                
+               $input1 =   request([ 'academic_years_id','class_mappings_id']);
+              // StudentClassMapp::create($input1); 
+              $studentClassMapp = new StudentClassMapp();
+              $studentClassMapp->students_id=$stud->id;
+              $studentClassMapp->academic_years_id=$validator['academic_years_id'];
+              $studentClassMapp->class_mappings_id=$validator['class_mappings_id'];
+              $studentClassMapp->save();
                 }
                 catch(\Exception $e)
                 {
-
+dd($e->getMessage());
                 DB::rollback();
                 return back()->with('error','Something Went Wrong!');
                 }

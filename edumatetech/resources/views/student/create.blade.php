@@ -5,12 +5,44 @@
             <div class="box-header with-border">
               <h3 class="box-title">Student Create</h3>
             </div>
+            @foreach ($errors->all() as $error)
+      <div>{{ $error }}</div>
+  @endforeach
             <!-- /.box-header -->
             <!-- form start -->
             <div class="box-body">
             <form method="post" action="{{ route('student.store') }}">
             @csrf
-              
+            <div class="form-group"> 
+                 <div class="col-sm-6">
+                    <label for="academic_years_id">Academic Year</label>
+                    <select required name="academic_years_id" class="form-control" id="academic_years_id" autofocus>
+                    <option value="" disabled selected>--Select--</option>
+                    @foreach($academicyear as $academic)
+                    <option value="{{$academic->id}}"{{ old('academic_years_id') == $academic->id ? 'selected':''}}>{{$academic->name}}</option>
+                    @endforeach
+                    </select>
+                    @if ($errors->has('academic_years_id'))
+                    <div class="invalid-feedback">{{ $errors->first('academic_years_id') }}</div>
+                    @endif
+                  </div>
+                  </div>
+
+                  <div class="form-group"> 
+                 <div class="col-sm-6">
+                    <label for="class_mappings_id">Batch</label>
+                    <select required name="class_mappings_id" class="form-control" id="religion_id" autofocus>
+                    <option value="" disabled selected>--Select--</option>
+                    @foreach($class as $classes)
+                    <option value="{{$classes->id}}"{{ old('class_mappings_id') == $classes->id ? 'selected':''}}>{{$classes->batchname}}</option>
+                    @endforeach
+                    </select>
+                    @if ($errors->has('class_mappings_id'))
+                    <div class="invalid-feedback">{{ $errors->first('class_mappings_id') }}</div>
+                    @endif
+                  </div>
+                  </div>
+
               
                   <div class="form-group">
                   <div class="col-sm-6">
