@@ -180,3 +180,8 @@ Route::get('/examtype/list', 'ExamtypeController@list')->name('examtype.list');
 Route::post('/examtype/destroy', 'ExamtypeController@destroy')->name('examtype.destroy');
 Route::get('examtype/{id}', 'ExamtypeController@edit')->name('examtype.edit');
 Route::patch('examtype/{id}', 'ExamtypeController@update')->name('examtype.update');
+
+
+//------ExamMark---------
+Route::get('/studentMark/create', 'StudentMarkController@create')->name('studentMark.create');
+Route::post('/studentMark/getstudent', 'StudentMarkController@getstudent')->name('studentMark.getstudent');
