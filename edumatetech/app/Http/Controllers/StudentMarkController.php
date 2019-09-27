@@ -35,4 +35,11 @@ class StudentMarkController extends Controller
       
        return response()->json(  $stud ); 
     }
+
+    public function store(Request $request)
+    {   
+
+        
+        dd($request);
+    }
 }

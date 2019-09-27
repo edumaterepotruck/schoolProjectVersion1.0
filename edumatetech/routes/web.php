@@ -185,3 +185,4 @@ Route::patch('examtype/{id}', 'ExamtypeController@update')->name('examtype.updat
 //------ExamMark---------
 Route::get('/studentMark/create', 'StudentMarkController@create')->name('studentMark.create');
 Route::post('/studentMark/getstudent', 'StudentMarkController@getstudent')->name('studentMark.getstudent');
+Route::post('/studentMark/store', 'StudentMarkController@store')->name('studentMark.store');
